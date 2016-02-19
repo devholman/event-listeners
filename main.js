@@ -1,22 +1,52 @@
 // GO!
 
+var controlButton = document.querySelector("#hide-nav-button")
+var navMenu = document.querySelector(".nav-menu")
 
 
-// BONUS 
-var input = document.querySelector("#add-guest-bonus input")
-var guestList = document.querySelector("#add-guest-bonus ul")
+var menuState = {
+	showing: true
+}
 
-var addGuest = function(e) {
-	console.log(e.keyCode)
-	if (e.keyCode === 13) {
-		var newGuestItem = document.createElement('li')
-		newGuestItem.innerHTML = e.target.value + "<button>X</button>"
-		newGuestItem.classList.add('guest')
-		newGuestItem.querySelector('button').addEventListener('click',function() {
-			guestList.removeChild(newGuestItem)
-		})
-		guestList.appendChild(newGuestItem)
-		e.target.value = ''
+var menuToggle = function(){
+	if(menuState.showing){
+		navMenu.style.opacity=0
+		menuState.showing = false
+		controlButton.textContent = "show nav"
+
+
+	}else{
+		navMenu.style.opacity=1
+		menuState.showing = true
+		controlButton.textContent = "hide nav"
 	}
 }
-input.addEventListener('keypress',addGuest)
+
+controlButton.addEventListener("click", menuToggle)
+
+//Task #2
+var inputText = document.querySelector("input[type='text']")
+var inputListUl = document.querySelector(".guest-list")
+
+var enterInput = function(inputKey){
+	inputText = inputKey.srcElement
+	if(inputKey.keyCode === 13){
+		var userInput = inputText.value
+		var newGuestItem = document.createElement('li')
+		newGuestItem.textContent = userInput
+		inputListUl.appendChild(newGuestItem)
+		newGuestItem.classList.add('guest')
+		inputText.value = ''
+	}
+}
+inputText.addEventListener('keydown',enterInput)
+
+// Task #3
+
+var inputText = document.querySelector("input[type='text']")
+var ulList = document.querySelector(".guest-list")
+
+var enterList = function(inputKey){
+	
+
+}
