@@ -25,7 +25,7 @@ var menuToggle = function(){
 controlButton.addEventListener("click", menuToggle)
 
 //Task #2
-var inputText = document.querySelector("input[type='text']")
+var inputText = document.querySelector("#textInput")
 var inputListUl = document.querySelector(".guest-list")
 
 var enterInput = function(inputKey){
@@ -43,10 +43,28 @@ inputText.addEventListener('keydown',enterInput)
 
 // Task #3
 
-var inputText = document.querySelector("input[type='text']")
-var ulList = document.querySelector(".guest-list")
+var inputText3 = document.querySelector("#add-guest-bonus input")
+var inputListUl3 = document.querySelector("#add-guest-bonus ul")
 
-var enterList = function(inputKey){
-	
-
+var redButtonWork = function(){
+	this.parentNode.parentNode.removeChild(this.parentNode)
 }
+
+var enterInput = function(inputKey){
+	inputText3 = inputKey.srcElement
+	if(inputKey.keyCode === 13){
+		var userInput = inputText3.value
+		var newGuestItem = document.createElement('li')
+		var redButton = document.createElement("button")
+		redButton.textContent = 'x'
+		newGuestItem.textContent = userInput
+		inputListUl3.appendChild(newGuestItem)
+		newGuestItem.appendChild(redButton)
+		newGuestItem.classList.add('guest')
+		inputText3.value = ''
+		redButton.addEventListener('click',redButtonWork)
+	}
+}
+
+ 
+inputText3.addEventListener('keydown',enterInput)
